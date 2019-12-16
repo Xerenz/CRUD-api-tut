@@ -16,3 +16,27 @@ exports.create_product = function(req, res) {
         res.send("Product created successfully");
     });
 };
+
+exports.get_product = function(req, res) {
+    Product.findById(req.params.id, function(err, prod) {
+        if (err)
+            return next(err);
+        res.send(prod);
+    });
+};
+
+exports.product_update = function(req, res) {
+    Product.findByIdAndUpdate(req.params.id, function(err, prod) {
+        if (err)
+            return next(err);
+        res.send("Product Updated");
+    });
+};
+
+exports.product_delete = function(req, res) {
+    Product.findByIdAndDelete(req.params.id, function(err) {
+        if (err)
+            return next(err);
+        res.send("Product deleted");
+    });
+};
